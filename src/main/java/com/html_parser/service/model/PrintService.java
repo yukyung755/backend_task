@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -45,9 +46,25 @@ public class PrintService {
 						System.out.print( s );
 				}
 				
-				// 3. 오름차순
-				Arrays.sort( eng, String.CASE_INSENSITIVE_ORDER );
-				Arrays.sort( num, String.CASE_INSENSITIVE_ORDER );
+				// 3. 오름차순 ( AaBbCcDdE, 0123456 )
+				Arrays.sort( eng, new Comparator<String>() {
+						@Override
+						public int compare( String o1, String o2 ) {
+								if( o1.equalsIgnoreCase( o2 ) ){
+										if( o1.toUpperCase().equals( o1 ) ){
+												return -1;
+										}
+										else{
+												return 1;
+										}
+								}
+								else {
+										return o1.compareToIgnoreCase( o2 );
+								}
+								
+						}
+				});
+				Arrays.sort( num );
 				System.out.println();
 				System.out.println();
 				System.out.print( "정렬된 영어 :: " );
@@ -111,7 +128,6 @@ public class PrintService {
 		private String[] getNumArr( String str ) {
 				
 				String intStr = str.replaceAll("[^0-9]", "" );
-				intStr.split("" );
 				return intStr.split( "" );
 		}
 		
