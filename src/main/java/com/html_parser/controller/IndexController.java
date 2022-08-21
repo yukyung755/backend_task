@@ -16,7 +16,8 @@ public class IndexController {
 		public Map backendTask( @RequestBody PrintInfo printInfo ) {
 				
 				Map<String, Object> resultMap = new HashMap<>();
-				resultMap.put( "result","FAIL" );
+				resultMap.put( "result", "FAIL" );
+				resultMap.put( "msg", "FAIL" );
 				
 				if( printInfo == null ) {
 					return resultMap;
