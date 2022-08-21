@@ -141,7 +141,9 @@ public class PrintService {
 		 */
 		private String[] getMixedArr( String[] Arr1, String[] Arr2 ) {
 				
-				if ( Arr1.length == 0 || Arr2.length == 0 ) return new String[0];
+				if ( Arr1.length == 0 || Arr2.length == 0 ) {
+						return Arr1.length >= Arr2.length ? Arr1 : Arr2;
+				}
 				
 				String[] bigArr = null;
 				String[] smallArr = null;
@@ -154,8 +156,6 @@ public class PrintService {
 						bigArr = Arr2.clone();
 						smallArr = Arr1.clone();
 				}
-				
-				if( bigArr == null || smallArr == null ) return new String[0];
 				
 				int sort = 1;
 				char c = bigArr[0].charAt(0);
